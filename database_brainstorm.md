@@ -7,33 +7,32 @@ To accomodate instrument changes (like the `env` parameter suddenly having three
 # Table structure
 All instruments based on LSDJ 9.x
 ## Pulse
-- `name`            - string
-- `env1`            - string (hex value)
-- `env2`            - string (hex value)
-- `env3`            - nullable string (hex value)
-- `wave`            - int (25, 50, 75)
-- `output`          - str (L, R, LR)
-- `length`          - str (hex value, with `unlimited` option)
-- `sweep`           - string (hex value)
-- `pitch_speed`     - str (fast, tick, step, drum)
-- `pitch_waveform`  - str (waveforms: triangle, saw, square)
-- `transpose`       - bool
-- `transpose_pu2`   - str (hex value)
-- `finetune`        - str (hex value)
-- `cmd_rate`        - str (single hex value)
-- `table_id`        - foreign ID
-- `table_mode`      - nullable str (step, tick, off)
+- `name`                - string
+- `env1`                - string (hex value)
+- `env2`                - string (hex value)
+- `env3`                - nullable string (hex value)
+- `wave`                - int (25, 50, 75)
+- `output`              - str (L, R, LR)
+- `length`              - str (hex value, with `unlimited` option)
+- `sweep`               - string (hex value)
+- `pitch_speed`         - str (fast, tick, step, drum)
+- `pitch_waveform`      - str (waveforms: triangle, saw, square)
+- `transpose`           - bool
+- `transpose_pu2`       - str (hex value)
+- `finetune`            - str (hex value)
+- `cmd_rate`            - str (single hex value)
+- `table_id`            - foreign ID
+- `table_mode`          - nullable str (step, tick, off)
 
 ## Wave
-- `name`            - string
-- `volume_level`    - str (1, 2 or 3)
-- `volume_panning`  - str (L, R, LR)
-- `pitch_speed`     - str (fast, tick, step, drum)
-- `pitch_waveform`  - str (waveforms: triangle, saw, square)
-- `transpose`       - bool
-- `finetune`        - str (hex value)
-- `cmd_rate`        - str (single hex value)
-
+- `name`                - string
+- `volume_level`        - tinyInt (1, 2 or 3)
+- `volume_panning`      - str (L, R, LR)
+- `pitch_speed`         - str (fast, tick, step, drum)
+- `pitch_waveform`      - str (waveforms: triangle, saw, square)
+- `transpose`           - bool
+- `finetune`            - str (hex value)
+- `cmd_rate`            - str (single hex value)
 - `play`                - str, manual, once, loop, pingpong, resync
 - `synth`               - str (single hex value)
 - `speed`               - str (hex value)
@@ -41,6 +40,8 @@ All instruments based on LSDJ 9.x
 - `loop_pos`            - str (single hex value)
 - `table_id`            - foreign ID
 - `table_mode`          - nullable str (step, tick, off)
+
+### Synth screen
 - `signal`              - str (saw, triangle, square, **waveform**... unsure how to deal with the last one)
 - `filter`              - str (lowp, highp, bandp, allp)
 - `dist`                - str (clip, fold, wrap)
@@ -57,22 +58,20 @@ All instruments based on LSDJ 9.x
 - `limit_last`          - str (hex value)
 - `phase_first`         - str (hex value)
 - `phase_last`          - str (hex value)
-- `table_id`            - foreign ID
-- `table_mode`          - nullable str (step, tick, off)
 
 ## Noise
-- `name`            - string
-- `env1`            - string (hex value)
-- `env2`            - string (hex value)
-- `env3`            - nullable string (hex value)
-- `output`          - str (L, R, LR)
-- `length`          - str (hex value, with `unlimited` option)
-- `pitch_safety`    - str (safe, free)
-- `vibrato`         - str (waveforms: triangle, saw, square)
-- `transpose`       - bool
-- `cmd_rate`        - str (single hex value)
-- `table_id`        - foreign ID
-- `table_mode`      - nullable str (step, tick, off)
+- `name`                - string
+- `env1`                - string (hex value)
+- `env2`                - string (hex value)
+- `env3`                - nullable string (hex value)
+- `output`              - str (L, R, LR)
+- `length`              - str (hex value, with `unlimited` option)
+- `pitch_safety`        - str (safe, free)
+- `vibrato`             - str (waveforms: triangle, saw, square)
+- `transpose`           - bool
+- `cmd_rate`            - str (single hex value)
+- `table_id`            - foreign ID
+- `table_mode`          - nullable str (step, tick, off)
 
 ## Table
 WIP
