@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('finetune');
             $table->string('cmd_rate');
             $table->string('table_mode')->nullable();
+            $table->timestamps();
         });
 
     }
