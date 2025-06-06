@@ -3,7 +3,10 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use phpDocumentor\Reflection\Types\This;
+use App\Enums\PitchSpeedEnum;
+use App\Enums\WaveformEnum;
+use App\Enums\PanningEnum;
+use App\Enums\TableModeEnum;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PulseInstrument>
@@ -23,16 +26,16 @@ class PulseInstrumentFactory extends Factory
             'env2' => $this->generateHexidecimalValue(),
             'env3' => $this->faker->boolean() ? null : $this->generateHexidecimalValue(),
             'wave' => $this->faker->randomElement([25, 50, 75]),
-            'output' => $this->faker->randomElement(['L', 'R', 'LR']),
+            'output' => $this->faker->randomElement(PanningEnum::cases()),
             'length' => $this->faker->optional(0.1, $this->generateHexidecimalValue())->randomElement(['UNLIM']),
             'sweep' => $this->generateHexidecimalValue(),
-            'pitch_speed' => $this->faker->randomElement(['FAST', 'TICK', 'STEP', 'DRUM']),
-            'pitch_waveform' => $this->faker->randomElement(['triangle', 'saw', 'square']), // TODO: Make Enums
+            'pitch_speed' => $this->faker->randomElement(PitchSpeedEnum::cases()),
+            'pitch_waveform' => $this->faker->randomElement(WaveformEnum::cases()),
             'transpose' => $this->faker->boolean(10),
             'transpose_pu2' => $this->generateHexidecimalValue(),
             'finetune' => $this->generateHexidecimalValue(),
             'cmd_rate' => $this->generateHexidecimalValue(1),
-            'table_mode' => $this->faker->randomElement([null, 'STEP', 'TICK']),
+            'table_mode' => $this->faker->randomElement(TableModeEnum::cases()),
         ];
     }
 
