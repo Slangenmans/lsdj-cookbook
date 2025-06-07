@@ -9,4 +9,7 @@ class Table extends Model
 {
     /** @use HasFactory<\Database\Factories\TableFactory> */
     use HasFactory;
+
+    protected $table = 'tables-v9';
+
 }

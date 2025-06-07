@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Enums\EffectEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Arr;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Table>
@@ -20,14 +22,18 @@ class TableFactory extends InstrumentFactory
         $definition = [];
 
         foreach (range(0, $tableConfig['steps']) as $step) {
-            array_push($definition, ...[
+            $stepValues = [
                 "{$step}_VOL" => $this->generateHexidecimalValue(),
                 "{$step}_TSP" => $this->generateHexidecimalValue(),
-                "{$step}_CMD_effect_1" => $this->generateHexidecimalValue(),
+                "{$step}_CMD_effect_1" => $this->faker->randomElement(EffectEnum::cases()),
                 "{$step}_CMD_value_1" => $this->generateHexidecimalValue(),
-                "{$step}_CMD_effect_2" => $this->generateHexidecimalValue(),
+                "{$step}_CMD_effect_2" => $this->faker->randomElement(EffectEnum::cases()),
                 "{$step}_CMD_value_2" => $this->generateHexidecimalValue()
-            ]);
+            ];
+
+            foreach ($stepValues as $key => $value) {
+                $definition[$key] = $value;
+            }
         };
 
         return $definition;
