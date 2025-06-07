@@ -74,4 +74,6 @@ All instruments based on LSDJ 9.x
 - `table_mode`          - nullable str (step, tick, off)
 
 ## Table
-WIP
+The tables table (lel) will contain one column per parameter per row. This is hella clunky, but combined with 
+a config file, it shouldn't be too hard to interact with:
+`0_VOL, 0_TSP_, 0_CMD_E_1, 0_CMD_VAL_1, 0_CMD_E_2, 0_CMD_VAL_2, 1_VOL, 1_TSP_, etc.`
