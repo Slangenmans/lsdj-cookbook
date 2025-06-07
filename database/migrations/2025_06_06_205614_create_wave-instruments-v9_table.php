@@ -53,6 +53,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pulse-instruments-v9');
+        Schema::dropIfExists('wave-instruments-v9');
     }
 };
