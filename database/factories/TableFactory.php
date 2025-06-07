@@ -20,14 +20,16 @@ class TableFactory extends InstrumentFactory
         $definition = [];
 
         foreach (range(0, $tableConfig['steps']) as $step) {
-            array_push(...[
+            array_push($definition, ...[
                 "{$step}_VOL" => $this->generateHexidecimalValue(),
-                "{$step}_TSP",
-                "{$step}_CMD_effect_1",
-                "{$step}_CMD_value_1",
-                "{$step}_CMD_effect_2",
-                "{$step}_CMD_value_2"
+                "{$step}_TSP" => $this->generateHexidecimalValue(),
+                "{$step}_CMD_effect_1" => $this->generateHexidecimalValue(),
+                "{$step}_CMD_value_1" => $this->generateHexidecimalValue(),
+                "{$step}_CMD_effect_2" => $this->generateHexidecimalValue(),
+                "{$step}_CMD_value_2" => $this->generateHexidecimalValue()
             ]);
         };
+
+        return $definition;
     }
 }
