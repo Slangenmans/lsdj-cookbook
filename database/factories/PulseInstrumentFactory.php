@@ -11,7 +11,7 @@ use App\Enums\TableModeEnum;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PulseInstrument>
  */
-class PulseInstrumentFactory extends Factory
+class PulseInstrumentFactory extends InstrumentFactory
 {
     /**
      * Define the model's default state.
@@ -37,10 +37,5 @@ class PulseInstrumentFactory extends Factory
             'cmd_rate' => $this->generateHexidecimalValue(1),
             'table_mode' => $this->faker->randomElement(TableModeEnum::cases()),
         ];
-    }
-
-    public function generateHexidecimalValue(?int $characterCount = 2): string
-    {
-        return $this->faker->regexify(sprintf('[0-9A-F]{%d}', $characterCount));;
     }
 }
