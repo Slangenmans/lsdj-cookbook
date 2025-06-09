@@ -27,6 +27,12 @@ return new class extends Migration
             $table->string('transpose_pu2');
             $table->string('finetune');
             $table->string('cmd_rate');
+            $table->foreignId('table_id')
+                ->nullable()
+                ->references('id')
+                ->on('tables-v9')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->string('table_mode')->nullable();
             $table->timestamps();
         });

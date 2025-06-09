@@ -23,7 +23,12 @@ return new class extends Migration
             $table->string('vibrato');
             $table->boolean('transpose');
             $table->string('cmd_rate');
-            // TODO: Add foreign ID table column
+            $table->foreignId('table_id')
+                ->nullable()
+                ->references('id')
+                ->on('tables-v9')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->string('table_mode')->nullable();
             $table->timestamps();
         });

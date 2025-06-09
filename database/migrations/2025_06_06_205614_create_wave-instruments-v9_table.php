@@ -26,6 +26,12 @@ return new class extends Migration
             $table->string('speed');
             $table->string('length');
             $table->string('loop_pos');
+            $table->foreignId('table_id')
+                ->nullable()
+                ->references('id')
+                ->on('tables-v9')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->string('table_mode')->nullable();
             $table->string('signal');
             $table->string('filter');

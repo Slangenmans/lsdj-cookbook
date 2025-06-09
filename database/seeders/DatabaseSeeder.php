@@ -8,6 +8,7 @@ use Database\Factories\PulseInstrumentFactory;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Database\Factories\TableFactory;
 use Database\Factories\WaveInstrumentFactory;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,9 +18,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        PulseInstrumentFactory::new()->times(25)->createMany();
-        WaveInstrumentFactory::new()->times(25)->createMany();
-        NoiseInstrumentFactory::new()->times(25)->createMany();
-        TableFactory::new()->times(25)->createMany();
+        $tables = TableFactory::new()->createMany(100);
+
+        // Instruments with tables
+        PulseInstrumentFactory::new()
+            ->times(50)
+            ->sequence(fn (Sequence $sequence) => ['table_id' => $tables->shuffle()->first()->id])
+            ->create();
+        WaveInstrumentFactory::new()->times(50)->create()
+            ->times(50)
+            ->sequence(fn (Sequence $sequence) => ['table_id' => $tables->shuffle()->first()->id])
+            ->create();
+        NoiseInstrumentFactory::new()->times(50)->create()
+            ->times(50)
+            ->sequence(fn (Sequence $sequence) => ['table_id' => $tables->shuffle()->first()->id])
+            ->create();
+
+        // Instruments without tables
+        PulseInstrumentFactory::new()->times(10)->createMany();
+        WaveInstrumentFactory::new()->times(10)->createMany();
+        NoiseInstrumentFactory::new()->times(10)->createMany();
     }
 }

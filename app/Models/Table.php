@@ -11,5 +11,4 @@ class Table extends Model
     use HasFactory;
 
     protected $table = 'tables-v9';
-
 }
