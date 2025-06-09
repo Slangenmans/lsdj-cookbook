@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $tables = TableFactory::new()->createMany(100);
 
         // Instruments with tables
+        // TODO: Sequences approach doesn't work. Wrap factories in loop, use ->for(TableFactory etc.)
         PulseInstrumentFactory::new()
             ->times(50)
             ->sequence(fn (Sequence $sequence) => ['table_id' => $tables->shuffle()->first()->id])
