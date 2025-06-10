@@ -15,10 +15,8 @@ return new class extends Migration
             $tableConfig = config('tables')['v9'];
 
             $table->id();
-            foreach (range(0, $tableConfig['steps']) as $step) {
-                foreach ($tableConfig['parameters'] as $parameter) {
-                    $table->string("{$step}_{$parameter}");
-                }
+            foreach ($tableConfig['parameters'] as $parameter) {
+                $table->json($parameter);
             }
             $table->timestamps();
         });

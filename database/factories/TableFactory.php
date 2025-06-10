@@ -3,8 +3,7 @@
 namespace Database\Factories;
 
 use App\Enums\EffectEnum;
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Arr;
+use Random\RandomException;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Table>
@@ -15,27 +14,27 @@ class TableFactory extends InstrumentFactory
      * Define the model's default state.
      *
      * @return array<string, mixed>
+     * @throws RandomException
      */
     public function definition(): array
     {
-        $tableConfig = config('tables')['v9'];
-        $definition = [];
+        return [
+            "VOL" => $this->generateStepValuesJson(),
+            "TSP" => $this->generateStepValuesJson(),
+            "CMD_effect_1" => $this->faker->randomElement(EffectEnum::cases()),
+            "CMD_value_1" => $this->generateStepValuesJson(),
+            "CMD_effect_2" => $this->faker->randomElement(EffectEnum::cases()),
+            "CMD_value_2" => $this->generateStepValuesJson(),
+        ];
+    }
 
-        foreach (range(0, $tableConfig['steps']) as $step) {
-            $stepValues = [
-                "{$step}_VOL" => $this->generateHexidecimalValue(),
-                "{$step}_TSP" => $this->generateHexidecimalValue(),
-                "{$step}_CMD_effect_1" => $this->faker->randomElement(EffectEnum::cases()),
-                "{$step}_CMD_value_1" => $this->generateHexidecimalValue(),
-                "{$step}_CMD_effect_2" => $this->faker->randomElement(EffectEnum::cases()),
-                "{$step}_CMD_value_2" => $this->generateHexidecimalValue()
-            ];
+    private function generateStepValuesJson(): string
+    {
+        $array = [];
+        foreach(range(0, config('tables')['v9']['steps']) as $step) {
+            $array[$step] = $this->generateHexidecimalValue();
+        }
 
-            foreach ($stepValues as $key => $value) {
-                $definition[$key] = $value;
-            }
-        };
-
-        return $definition;
+        return collect($array)->toJson();
     }
 }
